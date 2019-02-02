@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { CardPanel } from 'modules/core/components';
+import { scrollsToTop } from 'modules/core/hoc';
 
 import { Issues, RepoSelect } from './components';
 
@@ -12,4 +12,4 @@ const ReposLayout = () => (
   </div>
 );
 
-export default ReposLayout;
+export default scrollsToTop(ReposLayout);
