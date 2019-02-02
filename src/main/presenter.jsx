@@ -4,9 +4,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import appRoutes from './appRoutes';
 
-import { Routes } from './components';
-
-import './styles.scss';
+import {
+  Layout,
+  Routes,
+} from './components';
 
 class Main extends Component {
   render() {
@@ -15,9 +16,9 @@ class Main extends Component {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <div className="main">
+          <Layout>
             <Routes config={appRoutes} />
-          </div>
+          </Layout>
         </PersistGate>
       </Provider>
     );
