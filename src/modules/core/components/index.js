@@ -1,4 +1,5 @@
 export { default as Button } from './Button';
+export { default as EmptyState } from './EmptyState';
 export { default as CardPanel } from './CardPanel';
 export { default as Header } from './Header';
 export { default as IssueListItem } from './IssueListItem';

@@ -42,11 +42,20 @@ const getSortedIssues = createSelector(
   },
 );
 
+const getSelectedRepoName = createSelector(
+  [selectors.getRepos, getIdParam],
+  (repos, idParam) => {
+    if (repos[idParam]) return repos[idParam].name;
+    return '';
+  },
+);
+
 const mapStateToProps = createStructuredSelector({
   issues: getSortedIssues,
   fetchingIssues: selectors.getFetchingIssues,
   idParam: getIdParam,
   sortStringValue: uiSelectors.getSortStringValue,
+  repoName: getSelectedRepoName,
 });
 
 const mapDispatchToProps = {

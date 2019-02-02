@@ -36,6 +36,8 @@ class RepoSelect extends Component {
 
     return (
       <div className="repoSelect panel">
+        <h5 className="title">Repositories</h5>
+
         <CardPanel className="shadow">
           <SelectList
             name="repos"

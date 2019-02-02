@@ -12,6 +12,22 @@ $warning: #ff9f89;
 $danger: #f5365c;
 $primaryText: #32325d;
 
+@mixin bgDefaultAlpha($alpha) {
+  background-color: rgba(23, 43, 77, $alpha);
+}
+
+@mixin bgInfoAlpha($alpha) {
+  background-color: rgba(17, 205, 239, $alpha);
+}
+
+@mixin bgPrimaryAlpha($alpha) {
+  background-color: rgba(94, 114, 228, $alpha);
+}
+
+@mixin bgPrimaryTextAlpha($alpha) {
+  color: rgba(50, 50, 93, $alpha);
+}
+
 .primary-bg {
   background-color: $primary;
 }
@@ -91,6 +107,9 @@ $avatarSize: 40px;
 
 $panelShadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
 $hoverShadow: 0 0 2rem 0 rgba(136, 152, 170, 0.3);
+
+%flex { display: flex; }
+.flexBetween { @extend %flex; justify-content: space-between; }
 
 .def-radius {
   border-radius: $borderRad;
@@ -186,6 +205,21 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
+.selectWrapper {
+  position: relative;
+  padding: $unit;
+  background-color: $lightBg;
+
+  select {
+    border: 0;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    @include bgPrimaryTextAlpha(0.7);
+    font-size: 14px;
+  }
+}
+
 .selectList {
   padding: 0;
   margin: 0;
@@ -238,7 +272,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .times {
       font-size: 12px;
-      opacity: 0.7;
+      opacity: 0.6;
     }
   }
 }
@@ -250,6 +284,19 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: $borderRad;
   margin: $unit;
   font-size: 14px;
+}
+
+.emptyState {
+  h5 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .notALie {
+    margin: $unit auto;
+    width: 13px;
+    height: 14px;
+  }
 }
 
 .header {
@@ -283,6 +330,14 @@ h1, h2, h3, h4, h5, h6 {
   padding: 84px $padding-sm $padding-sm
 }
 
+h5 {
+  font-weight: 500;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  opacity: 0.5;
+  margin-bottom: $unit / 2;
+}
+
 .auth {
   min-height: calc(100vh - 64px);
 
@@ -292,14 +347,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 80px;
     padding-top: $padding-lg;
     padding-bottom: $padding-lg;
-  }
-
-  h5 {
-    font-weight: 500;
-    font-variant: small-caps;
-    text-transform: lowercase;
-    opacity: 0.5;
-    margin-bottom: $unit / 2;
   }
 
   .textField {
@@ -319,6 +366,12 @@ h1, h2, h3, h4, h5, h6 {
 .repos {
   display: flex;
   flex-direction: column;
+
+  .title {
+    margin-bottom: $unit;
+    max-width: 70%;
+    display: inline-block;
+  }
 }
 
 .repoSelect {
@@ -327,11 +380,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .issues {
   order: 1;
+  margin-bottom: $unit * 2;
 
   .button {
     border-color: transparent;
     outline: none;
     transition: filter 0.2s;
+    display: inline-block;
+    line-height: 1.15;
+    font-size: 13px;
+    vertical-align: bottom;
+    margin-top: 0;
+    margin-right: 0;
 
     &:hover {
       filter: brightness(120%);
@@ -349,7 +409,9 @@ h1, h2, h3, h4, h5, h6 {
       margin-right: initial;
     }
   }
+}
 
+@media (min-width: 768px) {
   .repos {
     display: block;
   }

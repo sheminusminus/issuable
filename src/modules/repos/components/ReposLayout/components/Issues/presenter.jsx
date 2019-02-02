@@ -6,6 +6,7 @@ import {
   CardPanel,
   Button,
   IssueListItem,
+  EmptyState,
 } from 'modules/core/components';
 
 const sortOptions = [
@@ -13,14 +14,32 @@ const sortOptions = [
   { value: 'createdAt:asc', label: 'Oldest' },
   { value: 'updatedAt:desc', label: 'Recently Updated' },
   { value: 'updatedAt:asc', label: 'Least Recently Updated' },
-  { value: 'assignee:asc', label: 'Assignee (A-Z)' },
-  { value: 'assignee:desc', label: 'Assignee (Z-A)' },
+  { value: 'assignee:desc', label: 'Assignee (A-Z)' },
+  { value: 'assignee:asc', label: 'Assignee (Z-A)' },
 ];
+
+const IssuesPanelHeader = ({ repoName, onButtonClick }) => (
+  <div className="flexBetween">
+    <h5 className="title">Issues for {repoName}</h5>
+
+    <Button
+      onClick={onButtonClick}
+      className="hide-lg">
+      Change
+    </Button>
+  </div>
+);
 
 class Issues extends Component {
   componentDidMount() {
     const { idParam } = this.props;
     if (idParam) this.loadIssuesForRepo(idParam);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { idParam: nextId, sortStringValue: nextSort } = nextProps;
+    const { idParam, sortStringValue } = this.props;
+    return (nextId !== idParam || nextSort !== sortStringValue);
   }
 
   componentDidUpdate(prevProps) {
@@ -64,35 +83,35 @@ class Issues extends Component {
   };
 
   render() {
-    const { sortStringValue } = this.props;
+    const { sortStringValue, repoName } = this.props;
 
     const options = this.issueOptions();
 
-    // text for (mobile-only) "back" button
-    const buttonText = `${String.fromCharCode(8249)} Repos`;
-
     return (
       <div className="issues panel">
-        <Button
-          onClick={this.handleShowRepos}
-          className="hide-lg">
-          {buttonText}
-        </Button>
+        <IssuesPanelHeader
+          onButtonClick={this.handleShowRepos}
+          repoName={repoName} />
 
         <CardPanel className="shadow">
-          <div className="mb">
-            <Select
-              className="issueSortSelect"
-              onChange={this.handleSortChange}
-              value={sortStringValue}
-              options={sortOptions} />
-          </div>
+          {options.length > 0 &&
+            <>
+              <div className="mb">
+                <Select
+                  className="issueSortSelect"
+                  onChange={this.handleSortChange}
+                  value={sortStringValue}
+                  options={sortOptions} />
+              </div>
 
-          <SelectList
-            OptionComponent={IssueListItem}
-            name="issues"
-            value={null}
-            options={options} />
+              <SelectList
+                OptionComponent={IssueListItem}
+                name="issues"
+                value={null}
+                options={options} />
+            </>}
+
+          {!options.length && <EmptyState />}
         </CardPanel>
       </div>
     );

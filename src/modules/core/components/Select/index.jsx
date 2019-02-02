@@ -38,26 +38,28 @@ class Select extends Component {
     } = this.props;
 
     return (
-      <select
-        value={value || ''}
-        name={name}
-        onChange={this.handleChange}
-        className={classie(['select', className])}>
-        {showPlaceholder &&
-          <Option
-            hidden={true}
-            label={placeholder}
-            className={optionClassName}
-            value="" />}
+      <div className="selectWrapper">
+        <select
+          value={value || ''}
+          name={name}
+          onChange={this.handleChange}
+          className={classie(['select', className])}>
+          {showPlaceholder &&
+            <Option
+              hidden={true}
+              label={placeholder}
+              className={optionClassName}
+              value="" />}
 
-        {options.map((opt, idx) => (
-          <Option
-            value={opt.value}
-            key={`${name}-option-${idx}`}
-            label={opt.label}
-            className={optionClassName} />
-        ))}
-      </select>
+          {options.map((opt, idx) => (
+            <Option
+              value={opt.value}
+              key={`${name}-option-${idx}`}
+              label={opt.label}
+              className={optionClassName} />
+          ))}
+        </select>
+      </div>
     );
   }
 }
