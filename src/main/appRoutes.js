@@ -1,5 +1,5 @@
-import { Auth } from '../modules/auth/components';
-import { RepoSelect } from '../modules/repos/components';
+import { Auth } from 'modules/auth/components';
+import { RepoSelect } from 'modules/repos/components';
 
 export default [
   {
