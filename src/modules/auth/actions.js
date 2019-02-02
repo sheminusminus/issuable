@@ -8,3 +8,9 @@ export function saveToken(token) {
     },
   };
 }
+
+export function setAuth() {
+  return {
+    type: constants.SET_AUTH,
+  };
+}
