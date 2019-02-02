@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import { TextField } from 'modules/core/components';
+import {
+  Button,
+  TextField,
+} from 'modules/core/components';
 
 import './styles.scss';
 
@@ -41,6 +44,8 @@ class Auth extends Component {
     });
   };
 
+  handleDone = () => {};
+
   render() {
     const { token } = this.state;
 
@@ -50,6 +55,11 @@ class Auth extends Component {
           value={token}
           name="token"
           onChange={this.handleFieldChange} />
+
+        <Button
+          onClick={this.handleDone}>
+          Okay Go
+        </Button>
       </div>
     );
   }
