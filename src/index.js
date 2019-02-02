@@ -8,10 +8,10 @@ import configureStore from './store';
 import './styles.scss';
 import Main from './main';
 
-const store = configureStore();
+const { store, persistor } = configureStore();
 
 ReactDOM.render(
-  <Main store={store} />,
+  <Main store={store} persistor={persistor} />,
   document.getElementById('root'),
 );
 
