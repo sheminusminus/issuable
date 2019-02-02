@@ -1,3 +1,4 @@
 import * as reducer from './reducer';
+import sagas from './sagas';
 
-export { reducer };
+export { reducer, sagas };
