@@ -4,10 +4,11 @@ import { classie } from 'utils';
 
 import './styles.scss';
 
-const Option = ({ index, label, className }) => (
+const Option = ({ value, label, className, hidden }) => (
   <option
+    hidden={hidden}
     className={classie(['option', className])}
-    value={index}>
+    value={value}>
     {label}
   </option>
 );
@@ -17,31 +18,43 @@ class Select extends Component {
     onChange: () => null,
     value: {},
     options: [],
+    showPlaceholder: true,
+    placeholder: 'Select',
   };
 
   handleChange = (evt) => {
-    const { options, onChange } = this.props;
+    const { onChange } = this.props;
     const { target: { value, name } } = evt;
-    const selection = options[value];
-    onChange(selection, name);
+    onChange(value, name);
   };
 
   render() {
     const {
+      value,
       options,
       name,
       className,
       optionClassName,
+      showPlaceholder,
+      placeholder,
     } = this.props;
 
     return (
       <select
+        value={value || ''}
         name={name}
         onChange={this.handleChange}
         className={classie(['select', className])}>
+        {showPlaceholder &&
+          <Option
+            hidden={true}
+            label={placeholder}
+            className={optionClassName}
+            value="" />}
+
         {options.map((opt, idx) => (
           <Option
-            index={idx}
+            value={opt.value}
             key={`${name}-option-${idx}`}
             label={opt.label}
             className={optionClassName} />
