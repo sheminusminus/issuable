@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Select } from 'modules/core/components';
+import { SelectList } from 'modules/core/components';
 
 import './styles.scss';
 
@@ -34,9 +34,9 @@ class RepoSelect extends Component {
 
     return (
       <div className="repoSelect">
-        <Select
+        <SelectList
           value={selectedRepoId}
-          onChange={this.handleRepoSelected}
+          onSelection={this.handleRepoSelected}
           options={options} />
       </div>
     );
