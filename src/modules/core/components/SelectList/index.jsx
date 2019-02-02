@@ -36,29 +36,42 @@ class SelectList extends Component {
     onSelection(value, name);
   };
 
+  renderItem = (opt, idx) => {
+    const { OptionComponent, name, optionClassName, value } = this.props;
+
+    if (OptionComponent) {
+      return (
+        <OptionComponent
+          selectedValue={value}
+          option={opt}
+          index={idx}
+          onSelect={this.handleSelection} />
+      );
+    }
+
+    return (
+      <SelectListItem
+        onSelect={this.handleSelection}
+        value={opt.value}
+        key={`${name}-item-${idx}`}
+        label={opt.label}
+        className={classie([optionClassName], {
+          selected: value === opt.value,
+        })}
+      />
+    );
+  };
+
   render() {
     const {
       options,
-      name,
       className,
-      optionClassName,
-      value,
     } = this.props;
 
     return (
       <ul
         className={classie(['selectList', className])}>
-        {options.map((opt, idx) => (
-          <SelectListItem
-            onSelect={this.handleSelection}
-            value={opt.value}
-            key={`${name}-item-${idx}`}
-            label={opt.label}
-            className={classie([optionClassName], {
-              selected: value === opt.value,
-            })}
-          />
-        ))}
+        {options.map(this.renderItem)}
       </ul>
     );
   }

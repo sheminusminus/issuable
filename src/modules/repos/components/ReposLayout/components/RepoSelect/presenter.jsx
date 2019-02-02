@@ -37,6 +37,7 @@ class RepoSelect extends Component {
     return (
       <div className="repoSelect">
         <SelectList
+          name="repos"
           value={selectedRepoId}
           onSelection={this.handleRepoSelected}
           options={options} />
