@@ -1,7 +1,9 @@
-import { take, call, fork } from 'redux-saga/effects';
+import { take, call, fork, put } from 'redux-saga/effects';
 
 import * as api from './api';
+import * as actions from './actions';
 import * as constants from './constants';
+import * as parse from './parse';
 
 /**
  *  Side effect manager, request user github repositories
@@ -11,9 +13,14 @@ export function* requestRepos() {
     const response = yield call(
       api.getUserRepos,
     );
-    console.log(response);
+
+    const { data } = response;
+    const formattedRepos = parse.formatRepos(data);
+
+    // dispatch the repos object onto the store
+    yield put(actions.reposSuccess(formattedRepos));
   } catch (error) {
-    yield false;
+    yield put(actions.reposFailure(error));
   }
 }
 
