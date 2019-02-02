@@ -13,3 +13,13 @@ export const getFetchingRepos = createSelector(
   [getState],
   state => state.fetchingRepos,
 );
+
+export const getIssues = createSelector(
+  [getState],
+  state => state.issues,
+);
+
+export const getFetchingIssues = createSelector(
+  [getState],
+  state => state.fetchingIssues,
+);

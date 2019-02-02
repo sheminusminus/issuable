@@ -5,6 +5,9 @@
 }
 
 .selectListItem {
+  cursor: pointer;
+
   &.selected {
+    color: $primary;
   }
 }

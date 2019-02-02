@@ -6,3 +6,7 @@ export async function getUserRepos() {
 
   return FetchService.get(url);
 }
+
+export async function getRepoIssues(url) {
+  return FetchService.get(url);
+}

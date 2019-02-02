@@ -5,6 +5,8 @@ export const name = 'repos';
 export const initialState = {
   repos: {},
   fetchingRepos: false,
+  issues: {},
+  fetchingIssues: false,
 };
 
 export function reducer(state = initialState, action = {}) {
@@ -26,6 +28,25 @@ export function reducer(state = initialState, action = {}) {
       return {
         ...state,
         fetchingRepos: false,
+      };
+
+    case constants.ISSUES_REQUEST:
+      return {
+        ...state,
+        fetchingIssues: true,
+      };
+
+    case constants.ISSUES_SUCCESS:
+      return {
+        ...state,
+        fetchingIssues: false,
+        issues: action.payload.issues,
+      };
+
+    case constants.ISSUES_FAILURE:
+      return {
+        ...state,
+        fetchingIssues: false,
       };
 
     default:

@@ -23,3 +23,30 @@ export function reposFailure(error) {
     },
   };
 }
+
+export function requestIssues(repoId) {
+  return {
+    type: constants.ISSUES_REQUEST,
+    payload: {
+      repoId,
+    },
+  };
+}
+
+export function issuesSuccess(issues) {
+  return {
+    type: constants.ISSUES_SUCCESS,
+    payload: {
+      issues,
+    },
+  };
+}
+
+export function issuesFailure(error) {
+  return {
+    type: constants.ISSUES_FAILURE,
+    payload: {
+      error,
+    },
+  };
+}
