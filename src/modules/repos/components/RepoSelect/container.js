@@ -10,7 +10,9 @@ const mapStateToProps = createStructuredSelector({
   fetchingRepos: selectors.getFetchingRepos,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  requestRepos: actions.requestRepos,
+};
 
 export default connect(
   mapStateToProps,

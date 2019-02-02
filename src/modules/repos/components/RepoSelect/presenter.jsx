@@ -5,6 +5,11 @@ import { Select } from 'modules/core/components';
 import './styles.scss';
 
 class RepoSelect extends Component {
+  componentDidMount() {
+    const { requestRepos } = this.props;
+    requestRepos();
+  }
+
   handleRepoSelected = (selection) => {
     console.log(selection);
   };
