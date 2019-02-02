@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import appRoutes from './appRoutes';
+
+import { Routes } from './components';
+
 import './styles.scss';
 
 class Main extends Component {
@@ -12,7 +16,7 @@ class Main extends Component {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <div className="main">
-            Now I am the app!
+            <Routes config={appRoutes} />
           </div>
         </PersistGate>
       </Provider>
