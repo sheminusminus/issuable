@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import { TextField } from 'modules/core/components';
 
@@ -9,9 +10,35 @@ class Auth extends Component {
     token: '',
   };
 
+  componentDidMount() {
+    const { token } = this.props;
+
+    // if we have a previous token saved in the redux state,
+    // use it; otherwise it's a clean slate
+    if (token && token.length) {
+      this.setState({ token });
+    }
+  }
+
+  syncState = () => {
+    const { saveToken } = this.props;
+    const { token } = this.state;
+
+    saveToken(token);
+  };
+
+  // we'll sync state to redux occasionally,
+  // but no reason to do this on every keystroke,
+  // so just debounce it
+  debouncedSyncState = _.debounce(this.syncState, 100);
+
   handleFieldChange = (evt) => {
     const { target: { value } } = evt;
-    this.setState({ token: value });
+
+    this.setState({ token: value }, () => {
+      // will sync with redux state at most every 100ms
+      this.debouncedSyncState(this.state.token);
+    });
   };
 
   render() {
