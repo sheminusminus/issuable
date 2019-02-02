@@ -6,8 +6,6 @@ import {
   TextField,
 } from 'modules/core/components';
 
-import './styles.scss';
-
 class Auth extends Component {
   state = {
     token: '',

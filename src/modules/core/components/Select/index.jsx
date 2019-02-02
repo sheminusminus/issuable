@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import { classie } from 'utils';
 
-import './styles.scss';
-
 const Option = ({ value, label, className, hidden }) => (
   <option
     hidden={hidden}

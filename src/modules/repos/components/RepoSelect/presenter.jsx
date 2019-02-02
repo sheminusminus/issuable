@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import { SelectList } from 'modules/core/components';
 
-import './styles.scss';
-
 class RepoSelect extends Component {
   state = {
     selectedRepoId: null,

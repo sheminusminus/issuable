@@ -2,8 +2,6 @@ import React, { Component, PureComponent } from 'react';
 
 import { classie } from 'utils';
 
-import './styles.scss';
-
 class SelectListItem extends PureComponent {
   handleClick = () => {
     const { value, onSelect } = this.props;
