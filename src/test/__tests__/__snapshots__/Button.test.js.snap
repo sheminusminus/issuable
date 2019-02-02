@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> Renders 1`] = `
+<button
+  className="button"
+  disabled={false}
+/>
+`;
+
+exports[`<Button /> Renders its children 1`] = `
+<button
+  className="button"
+  disabled={false}
+>
+  Kidz!
+</button>
+`;
+
+exports[`<Button /> Respects its \`disabled\` prop 1`] = `
+<button
+  className="button"
+  disabled={true}
+>
+  Kidz!
+</button>
+`;

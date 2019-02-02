@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextField /> Applies its \`name\` prop 1`] = `
+<input
+  className="textField"
+  name="fullName"
+  type="text"
+  value=""
+/>
+`;
+
+exports[`<TextField /> Applies its \`value\` prop 1`] = `
+<input
+  className="textField"
+  type="text"
+  value="Teri Dactyl"
+/>
+`;
+
+exports[`<TextField /> Renders with empty string default value 1`] = `
+<input
+  className="textField"
+  type="text"
+  value=""
+/>
+`;

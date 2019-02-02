@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardPanel /> Renders 1`] = `
+<div
+  className="card-panel"
+/>
+`;
+
+exports[`<CardPanel /> Renders its children 1`] = `
+<div
+  className="card-panel"
+>
+  <p>
+    All my children
+  </p>
+</div>
+`;

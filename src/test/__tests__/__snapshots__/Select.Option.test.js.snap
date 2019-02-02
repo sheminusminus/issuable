@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Option /> Renders 1`] = `
+<option
+  className="option"
+/>
+`;
+
+exports[`<Option /> Renders as hidden 1`] = `
+<option
+  className="option"
+  hidden={true}
+/>
+`;
+
+exports[`<Option /> Renders with label prop 1`] = `
+<option
+  className="option"
+>
+  Net worth
+</option>
+`;
+
+exports[`<Option /> Renders with value prop 1`] = `
+<option
+  className="option"
+  value="One dollhair"
+/>
+`;

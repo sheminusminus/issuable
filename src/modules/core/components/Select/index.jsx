@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { classie } from 'utils';
 
-const Option = ({ value, label, className, hidden }) => (
+export const Option = ({ value, label, className, hidden }) => (
   <option
     hidden={hidden}
     className={classie(['option', className])}

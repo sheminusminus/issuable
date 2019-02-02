@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { randomColor } from 'utils';
+
 import {
   Select,
   SelectList,
@@ -37,9 +39,18 @@ class Issues extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { idParam: nextId, sortStringValue: nextSort } = nextProps;
-    const { idParam, sortStringValue } = this.props;
-    return (nextId !== idParam || nextSort !== sortStringValue);
+    const {
+      idParam: nextId,
+      sortStringValue: nextSort,
+      fetchingIssues: nextFetching,
+    } = nextProps;
+
+    const { idParam, sortStringValue, fetchingIssues } = this.props;
+
+    return (nextId !== idParam ||
+      nextSort !== sortStringValue ||
+      nextFetching !== fetchingIssues
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -111,7 +122,7 @@ class Issues extends Component {
                 options={options} />
             </>}
 
-          {!options.length && <EmptyState />}
+          {!options.length && <EmptyState color={randomColor()} />}
         </CardPanel>
       </div>
     );

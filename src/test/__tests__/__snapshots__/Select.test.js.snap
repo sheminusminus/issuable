@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select /> Renders 1`] = `
+<div
+  className="selectWrapper"
+>
+  <select
+    className="select"
+    onChange={[Function]}
+    value={Object {}}
+  >
+    <option
+      className="option"
+      hidden={true}
+      value=""
+    >
+      Select
+    </option>
+  </select>
+</div>
+`;
+
+exports[`<Select /> Renders with custom placeholder option 1`] = `
+<div
+  className="selectWrapper"
+>
+  <select
+    className="select"
+    onChange={[Function]}
+    value={Object {}}
+  >
+    <option
+      className="option"
+      hidden={true}
+      value=""
+    >
+      PICK ONE!!!
+    </option>
+  </select>
+</div>
+`;
+
+exports[`<Select /> Renders with name prop 1`] = `
+<div
+  className="selectWrapper"
+>
+  <select
+    className="select"
+    name="theSelectizer"
+    onChange={[Function]}
+    value={Object {}}
+  >
+    <option
+      className="option"
+      hidden={true}
+      value=""
+    >
+      Select
+    </option>
+  </select>
+</div>
+`;
+
+exports[`<Select /> Renders with options 1`] = `
+<div
+  className="selectWrapper"
+>
+  <select
+    className="select"
+    onChange={[Function]}
+    value={Object {}}
+  >
+    <option
+      className="option"
+      hidden={true}
+      value=""
+    >
+      Select
+    </option>
+    <option
+      className="option"
+      value={1}
+    >
+      First option
+    </option>
+    <option
+      className="option"
+      value={2}
+    >
+      Second option
+    </option>
+  </select>
+</div>
+`;
+
+exports[`<Select /> Renders with value prop 1`] = `
+<div
+  className="selectWrapper"
+>
+  <select
+    className="select"
+    onChange={[Function]}
+    value={1}
+  >
+    <option
+      className="option"
+      hidden={true}
+      value=""
+    >
+      Select
+    </option>
+  </select>
+</div>
+`;
+
+exports[`<Select /> Renders without placeholder option 1`] = `
+<div
+  className="selectWrapper"
+>
+  <select
+    className="select"
+    onChange={[Function]}
+    value={Object {}}
+  />
+</div>
+`;
