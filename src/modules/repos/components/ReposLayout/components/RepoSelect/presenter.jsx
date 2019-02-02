@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Routing } from 'config';
+
 import { SelectList, CardPanel } from 'modules/core/components';
 
 class RepoSelect extends Component {
@@ -16,7 +18,7 @@ class RepoSelect extends Component {
     const { history } = this.props;
 
     this.setState({ selectedRepoId: value }, () => {
-      history.push(`/repos/${value}`);
+      history.push(Routing.clientRepoIssues(value));
     });
   };
 

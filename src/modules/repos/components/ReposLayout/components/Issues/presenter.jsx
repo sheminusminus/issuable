@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { Routing, sortOptions } from 'config';
 import { randomColor } from 'utils';
 
 import {
@@ -10,15 +11,6 @@ import {
   IssueListItem,
   EmptyState,
 } from 'modules/core/components';
-
-const sortOptions = [
-  { value: 'createdAt:desc', label: 'Newest' },
-  { value: 'createdAt:asc', label: 'Oldest' },
-  { value: 'updatedAt:desc', label: 'Recently Updated' },
-  { value: 'updatedAt:asc', label: 'Least Recently Updated' },
-  { value: 'assignee:desc', label: 'Assignee (A-Z)' },
-  { value: 'assignee:asc', label: 'Assignee (Z-A)' },
-];
 
 const IssuesPanelHeader = ({ repoName, onButtonClick }) => (
   <div className="flexBetween">
@@ -66,7 +58,7 @@ class Issues extends Component {
   // returns to the main list
   handleShowRepos = () => {
     const { history } = this.props;
-    history.push('/repos');
+    history.push(Routing.clientRepos());
   };
 
   loadIssuesForRepo = (id) => {
@@ -94,7 +86,7 @@ class Issues extends Component {
   };
 
   render() {
-    const { sortStringValue, repoName } = this.props;
+    const { sortStringValue, repoName, fetchingIssues } = this.props;
 
     const options = this.issueOptions();
 
@@ -105,7 +97,7 @@ class Issues extends Component {
           repoName={repoName} />
 
         <CardPanel className="shadow">
-          {options.length > 0 &&
+          {!fetchingIssues && options.length > 0 &&
             <>
               <div className="mb">
                 <Select
@@ -122,7 +114,8 @@ class Issues extends Component {
                 options={options} />
             </>}
 
-          {!options.length && <EmptyState color={randomColor()} />}
+          {!fetchingIssues && !options.length &&
+            <EmptyState color={randomColor()} />}
         </CardPanel>
       </div>
     );

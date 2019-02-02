@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
+import { Routing } from 'config';
+
 import {
   Button,
   TextField,
@@ -45,7 +47,7 @@ class Auth extends Component {
 
   handleDone = () => {
     const { history } = this.props;
-    history.push('/repos');
+    history.push(Routing.clientRepos());
   };
 
   render() {
