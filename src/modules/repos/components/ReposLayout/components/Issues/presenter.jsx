@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 
 import { Select, SelectList } from 'modules/core/components';
 
@@ -37,29 +36,24 @@ class Issues extends Component {
   };
 
   issueOptions = () => {
-    const { sortBy } = this.state;
-    const { idParam, issues } = this.props;
+    const {
+      issues,
+    } = this.props;
 
-    const [sortProperty, sortOrder] = sortBy.split(':');
-
-    if (issues && idParam) {
-      const repoIssues = issues[idParam] || [];
-      const sortedIssues = _.orderBy(repoIssues, [sortProperty], [sortOrder]);
-      return sortedIssues.map((item) => ({
-        value: item.id,
-        label: item.title,
-      }));
-    }
-
-    return [];
+    return issues.map((item) => ({
+      value: item.id,
+      label: item.title,
+    }));
   };
 
   handleSortChange = (sortBy) => {
-    this.setState({ sortBy });
+    const { setIssuesSort } = this.props;
+    const [property, dir] = sortBy.split(':');
+    setIssuesSort(property, dir);
   };
 
   render() {
-    const { sortBy } = this.state;
+    const { sortStringValue } = this.props;
 
     const options = this.issueOptions();
 
@@ -67,7 +61,7 @@ class Issues extends Component {
       <div className="issues panel">
         <Select
           onChange={this.handleSortChange}
-          value={sortBy}
+          value={sortStringValue}
           options={sortOptions} />
 
         <SelectList

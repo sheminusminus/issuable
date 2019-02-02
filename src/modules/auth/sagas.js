@@ -37,7 +37,7 @@ function* watch() {
     ]);
 
     switch (type) {
-      case constants.SET_AUTH:
+      case constants.SAVE_TOKEN:
         yield fork(setAuthToken, payload.token);
         break;
 
