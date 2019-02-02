@@ -366,7 +366,9 @@ h5 {
     margin: 0 auto;
     padding: $unit * 2;
     margin-top: $unit * 2;
-    font-weight: 600;
+    font-weight: bold;
+    background-color: $primary;
+    color: $secondary;
   }
 }
 
