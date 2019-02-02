@@ -3,15 +3,13 @@ import { RepoSelect } from 'modules/repos/components';
 
 export default [
   {
-    path: '/',
-    key: 'auth-route',
-    exact: true,
-    component: Auth,
+    path: '/repos',
+    key: 'repo-route',
+    component: RepoSelect,
   },
   {
-    path: '/repo',
-    key: 'repo-route',
-    exact: true,
-    component: RepoSelect,
+    path: '/',
+    key: 'auth-route',
+    component: Auth,
   },
 ];

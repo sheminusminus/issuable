@@ -44,7 +44,11 @@ class Auth extends Component {
     });
   };
 
-  handleDone = () => {};
+  handleDone = () => {
+    const { history } = this.props;
+
+    history.push('/repos');
+  };
 
   render() {
     const { token } = this.state;
