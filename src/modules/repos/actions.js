@@ -33,11 +33,12 @@ export function requestIssues(repoId) {
   };
 }
 
-export function issuesSuccess(issues) {
+export function issuesSuccess(repoId, issues) {
   return {
     type: constants.ISSUES_SUCCESS,
     payload: {
       issues,
+      repoId,
     },
   };
 }

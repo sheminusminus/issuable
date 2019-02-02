@@ -1,4 +1,5 @@
 import { take, call, fork, put, select } from 'redux-saga/effects';
+import { REHYDRATE } from 'redux-persist';
 
 import * as api from './api';
 import * as actions from './actions';
@@ -42,12 +43,12 @@ export function* requestIssues(repoId) {
     );
 
     const { data } = response;
-    // const formattedRepos = parse.formatRepos(data);
-    console.log(data);
-    // dispatch the repos object onto the store
-    // yield put(actions.reposSuccess(formattedRepos));
+    const formattedIssues = parse.formatIssues(data);
+
+    // dispatch the issues object onto the store
+    yield put(actions.issuesSuccess(repoId, formattedIssues));
   } catch (error) {
-    yield put(actions.reposFailure(error));
+    yield put(actions.issuesFailure(error));
   }
 }
 
@@ -55,9 +56,12 @@ export function* requestIssues(repoId) {
  *  Generator function to listen for redux actions
  */
 function* watch() {
+  yield take(REHYDRATE);
+
   while (true) {
     const { type, payload = {} } = yield take([
       constants.REPOS_REQUEST,
+      constants.ISSUES_REQUEST,
     ]);
 
     switch (type) {

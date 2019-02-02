@@ -40,7 +40,10 @@ export function reducer(state = initialState, action = {}) {
       return {
         ...state,
         fetchingIssues: false,
-        issues: action.payload.issues,
+        issues: {
+          ...state.issues,
+          [action.payload.repoId]: action.payload.issues,
+        },
       };
 
     case constants.ISSUES_FAILURE:
