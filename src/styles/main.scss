@@ -37,6 +37,8 @@ $padding-sm: 24px;
 $padding-lg: 32px;
 $inputHeight: 40px;
 $borderRad: 6px;
+$topSpace: 84px;
+$avatarSize: 40px;
 
 // =======
 // grid
@@ -80,6 +82,7 @@ $borderRad: 6px;
   .fourths-lg .column { flex: 0 0 25%; }
   .center-kids-lg { justify-content: center; }
   .align-kids-lg { align-items: center; }
+  .hide-lg { display: none; }
 }
 
 // =======
@@ -103,6 +106,10 @@ $hoverShadow: 0 0 2rem 0 rgba(136, 152, 170, 0.3);
   font-variant: small-caps;
 }
 
+.mb {
+  margin-bottom: $unit*4;
+}
+
 // =======
 // global base
 // =======
@@ -123,9 +130,10 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $default;
+  //background-color: $default;
+  background-color: $lightBg;
   color: $primaryText;
-  padding: $padding-lg;
+  padding: 0;
   min-height: 100vh;
 }
 
@@ -145,7 +153,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .shadow {
   position: relative;
-  display: inline-block;
   box-shadow: $panelShadow;
   z-index: 2;
 
@@ -172,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 .card-panel {
   background-color: #fff;
   border-radius: $borderRad;
-  padding: $padding-sm;
+  padding: $unit*2;
 }
 
 .button {
@@ -184,15 +191,77 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   list-style-type: none;
 
-  .selected {
-    color: $primary;
+  .selectListItem {
+    padding: $unit*2 0;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(34, 42, 66, 0.1);
+    transition: color 0.2s;
+
+    &:hover {
+      color: $primary;
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    &.selected {
+      color: $primary;
+    }
   }
+
+  .issueListItem {
+    display: flex;
+
+    .imgWrap {
+      width: $avatarSize;
+      height: $avatarSize;
+    }
+
+    img {
+      display: block;
+      width: $avatarSize;
+      height: $avatarSize;
+      border-radius: 50%;
+      flex-basis: $avatarSize;
+    }
+
+    .details {
+      padding-left: $unit;
+      font-size: 16px;
+    }
+
+    .times {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  }
+}
+
+.button {
+  background-color: $secondary;
+  border: 1px solid $primary;
+  color: $primary;
+  border-radius: $borderRad;
+  margin: $unit;
+  font-size: 14px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   padding-left: $unit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: $primary;
 
   .page-title {
     color: $secondary;
@@ -205,12 +274,13 @@ h1, h2, h3, h4, h5, h6 {
   .button {
     max-height: 40px;
     background-color: transparent;
-    border: 1px solid $secondary;
+    border-color: $secondary;
     color: $secondary;
-    border-radius: $borderRad;
-    margin: $unit;
-    font-size: 14px;
   }
+}
+
+.container {
+  padding: 84px $padding-sm $padding-sm
 }
 
 .auth {
@@ -246,6 +316,28 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.repos {
+  display: flex;
+  flex-direction: column;
+}
+
+.repoSelect {
+  order: 2;
+}
+
+.issues {
+  order: 1;
+
+  .button {
+    border-color: transparent;
+    outline: none;
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(120%);
+    }
+  }
+}
 
 @media (min-width: 640px) {
   .auth {
@@ -257,14 +349,17 @@ h1, h2, h3, h4, h5, h6 {
       margin-right: initial;
     }
   }
+
+  .repos {
+    display: block;
+  }
 }
 
-
-.header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background-color: $primary;
+@keyframes slideIn {
+  0% {
+    left: 100vh;
+  }
+  100% {
+    left: 0;
+  }
 }

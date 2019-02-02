@@ -42,6 +42,7 @@ class SelectList extends Component {
     if (OptionComponent) {
       return (
         <OptionComponent
+          key={`${name}-item-${idx}`}
           selectedValue={value}
           option={opt}
           index={idx}

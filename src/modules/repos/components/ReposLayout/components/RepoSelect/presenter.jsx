@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { SelectList } from 'modules/core/components';
+import { SelectList, CardPanel } from 'modules/core/components';
 
 class RepoSelect extends Component {
   state = {
@@ -36,11 +36,13 @@ class RepoSelect extends Component {
 
     return (
       <div className="repoSelect panel">
-        <SelectList
-          name="repos"
-          value={selectedRepoId}
-          onSelection={this.handleRepoSelected}
-          options={options} />
+        <CardPanel className="shadow">
+          <SelectList
+            name="repos"
+            value={selectedRepoId}
+            onSelection={this.handleRepoSelected}
+            options={options} />
+        </CardPanel>
       </div>
     );
   }

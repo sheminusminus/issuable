@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 
-import { Select, SelectList } from 'modules/core/components';
+import {
+  Select,
+  SelectList,
+  CardPanel,
+  Button,
+  IssueListItem,
+} from 'modules/core/components';
 
 const sortOptions = [
   { value: 'createdAt:desc', label: 'Newest' },
   { value: 'createdAt:asc', label: 'Oldest' },
   { value: 'updatedAt:desc', label: 'Recently Updated' },
   { value: 'updatedAt:asc', label: 'Least Recently Updated' },
-  { value: 'assignee:desc', label: 'Assignee (A-Z)' },
-  { value: 'assignee:asc', label: 'Assignee (Z-A)' },
+  { value: 'assignee:asc', label: 'Assignee (A-Z)' },
+  { value: 'assignee:desc', label: 'Assignee (Z-A)' },
 ];
 
 class Issues extends Component {
-  state = {
-    sortBy: sortOptions[0].value,
-  };
-
   componentDidMount() {
     const { idParam } = this.props;
     if (idParam) this.loadIssuesForRepo(idParam);
@@ -26,15 +28,23 @@ class Issues extends Component {
     const { idParam } = this.props;
 
     if (idParam && lastIdParam !== idParam) {
+      // reload the issues if we've switched selected repos
       this.loadIssuesForRepo(idParam);
     }
   }
+
+  // returns to the main list
+  handleShowRepos = () => {
+    const { history } = this.props;
+    history.push('/repos');
+  };
 
   loadIssuesForRepo = (id) => {
     const { requestIssues } = this.props;
     requestIssues(id);
   };
 
+  // formats the issues array for select list
   issueOptions = () => {
     const {
       issues,
@@ -43,6 +53,7 @@ class Issues extends Component {
     return issues.map((item) => ({
       value: item.id,
       label: item.title,
+      data: item,
     }));
   };
 
@@ -57,17 +68,32 @@ class Issues extends Component {
 
     const options = this.issueOptions();
 
+    // text for (mobile-only) "back" button
+    const buttonText = `${String.fromCharCode(8249)} Repos`;
+
     return (
       <div className="issues panel">
-        <Select
-          onChange={this.handleSortChange}
-          value={sortStringValue}
-          options={sortOptions} />
+        <Button
+          onClick={this.handleShowRepos}
+          className="hide-lg">
+          {buttonText}
+        </Button>
 
-        <SelectList
-          name="issues"
-          value={null}
-          options={options} />
+        <CardPanel className="shadow">
+          <div className="mb">
+            <Select
+              className="issueSortSelect"
+              onChange={this.handleSortChange}
+              value={sortStringValue}
+              options={sortOptions} />
+          </div>
+
+          <SelectList
+            OptionComponent={IssueListItem}
+            name="issues"
+            value={null}
+            options={options} />
+        </CardPanel>
       </div>
     );
   }

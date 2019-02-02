@@ -6,10 +6,10 @@ import { CardPanel } from 'modules/core/components';
 import { Issues, RepoSelect } from './components';
 
 const ReposLayout = () => (
-  <CardPanel className="repos">
+  <div className="repos container">
     <Route path="/repos" component={RepoSelect} />
     <Route path="/repos/:id" component={Issues} />
-  </CardPanel>
+  </div>
 );
 
 export default ReposLayout;
