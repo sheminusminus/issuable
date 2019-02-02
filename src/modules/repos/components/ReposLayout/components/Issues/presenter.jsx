@@ -4,18 +4,16 @@ import { SelectList } from 'modules/core/components';
 
 class Issues extends Component {
   componentDidMount() {
-    const { match } = this.props;
-    const { params = {} } = match;
-
-    if (params.id) this.loadIssuesForRepo(params.id);
+    const { idParam } = this.props;
+    if (idParam) this.loadIssuesForRepo(idParam);
   }
 
   componentDidUpdate(prevProps) {
-    const { match: { params: prevParams } } = prevProps;
-    const { match: { params } } = this.props;
+    const { idParam: lastIdParam } = prevProps;
+    const { idParam } = this.props;
 
-    if (prevParams.id !== params.id && params.id) {
-      this.loadIssuesForRepo(params.id);
+    if (idParam && lastIdParam !== idParam) {
+      this.loadIssuesForRepo(idParam);
     }
   }
 
@@ -25,11 +23,10 @@ class Issues extends Component {
   };
 
   issueOptions = () => {
-    const { match, issues } = this.props;
-    const { params = {} } = match;
+    const { idParam, issues } = this.props;
 
-    if (issues && params.id) {
-      const repoIssues = issues[params.id] || [];
+    if (issues && idParam) {
+      const repoIssues = issues[idParam] || [];
       return Object.keys(repoIssues).map((id) => ({
         value: id,
         label: repoIssues[id].title,
@@ -45,6 +42,7 @@ class Issues extends Component {
     return (
       <div className="issues">
         <SelectList
+          name="issues"
           value={null}
           options={options} />
       </div>
