@@ -149,7 +149,6 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  //background-color: $default;
   background-color: $lightBg;
   color: $primaryText;
   padding: 0;
@@ -302,7 +301,7 @@ h1, h2, h3, h4, h5, h6 {
 .header {
   display: flex;
   justify-content: space-between;
-  padding-left: $unit;
+  padding: 0 $unit*3;
   position: absolute;
   top: 0;
   left: 0;
@@ -321,8 +320,12 @@ h1, h2, h3, h4, h5, h6 {
   .button {
     max-height: 40px;
     background-color: transparent;
-    border-color: $secondary;
-    color: $secondary;
+    border-color: transparent;
+    color: $default;
+    font-weight: 500;
+    padding: 0 0 0 ;
+    margin: 0 0 0 ;
+    align-self: center;
   }
 }
 
