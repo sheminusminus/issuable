@@ -1,3 +1,7 @@
+// =======
+// colors
+// =======
+
 $lightBg: #f8f9fe;
 $default: #172b4d;
 $primary: #5e72e4;
@@ -8,11 +12,100 @@ $warning: #ff9f89;
 $danger: #f5365c;
 $primaryText: #32325d;
 
+.primary-bg {
+  background-color: $primary;
+}
+
+.secondary-bg {
+  background-color: $secondary;
+}
+
+.primary-text {
+  color: $primary;
+}
+
+.secondary-text {
+  color: $secondary;
+}
+
+// =======
+// layout spacing/sizes
+// =======
+
 $unit: 8px;
 $padding-sm: 24px;
 $padding-lg: 32px;
-
 $inputHeight: 40px;
+$borderRad: 6px;
+
+// =======
+// grid
+// =======
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.bigger { flex: 2.5; }
+.full .column  { flex: 0 0 100%; }
+.halves .column  { flex: 0 0 50%; }
+.thirds .column  { flex: 0 0 33.3333%; }
+.fourths .column { flex: 0 0 25%; }
+
+.center-kids { justify-content: center; }
+.align-kids { align-items: center; }
+
+@media (min-width: 640px) {
+  .bigger-md { flex: 2.5; }
+  .full-md .column  { flex: 0 0 100%; }
+  .halves-md .column  { flex: 0 0 50%; }
+  .thirds-md .column  { flex: 0 0 33.3333%; }
+  .fourths-md .column { flex: 0 0 25%; }
+
+  .center-kids-md { justify-content: center; }
+  .align-kids-md { align-items: center; }
+}
+
+@media (min-width: 980px) {
+  .bigger-lg { flex: 2.5; }
+  .full-lg .column  { flex: 0 0 100%; }
+  .halves-lg .column  { flex: 0 0 50%; }
+  .thirds-lg .column  { flex: 0 0 33.3333%; }
+  .fourths-lg .column { flex: 0 0 25%; }
+  .center-kids-lg { justify-content: center; }
+  .align-kids-lg { align-items: center; }
+}
+
+// =======
+// misc defaults
+// =======
+
+$panelShadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+$hoverShadow: 0 0 2rem 0 rgba(136, 152, 170, 0.3);
+
+.def-radius {
+  border-radius: $borderRad;
+}
+
+.no-bounds {
+  outline: none;
+  border: 0;
+}
+
+@mixin smallCaps() {
+  text-transform: lowercase;
+  font-variant: small-caps;
+}
+
+// =======
+// global base
+// =======
 
 html {
   box-sizing: border-box;
@@ -30,13 +123,148 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $lightBg;
+  background-color: $default;
   color: $primaryText;
   padding: $padding-lg;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-  monospace;
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0 0;
+}
+
+// =======
+// components
+// =======
+
+.vert-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.shadow {
+  position: relative;
+  display: inline-block;
+  box-shadow: $panelShadow;
+  z-index: 2;
+
+  &.hovers::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+    box-shadow: $hoverShadow;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &.hovers:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.card-panel {
+  background-color: #fff;
+  border-radius: $borderRad;
+  padding: $padding-sm;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.selectList {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+
+  .selected {
+    color: $primary;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: $unit;
+
+  .page-title {
+    color: $secondary;
+    font-weight: 500;
+    line-height: 60px;
+    letter-spacing: 0.03em;
+    @include smallCaps();
+  }
+
+  .button {
+    max-height: 40px;
+    background-color: transparent;
+    border: 1px solid $secondary;
+    color: $secondary;
+    border-radius: $borderRad;
+    margin: $unit;
+    font-size: 14px;
+  }
+}
+
+.auth {
+  min-height: calc(100vh - 64px);
+
+  .card-panel {
+    max-width: 500px;
+    max-height: 200px;
+    margin-top: 80px;
+    padding-top: $padding-lg;
+    padding-bottom: $padding-lg;
+  }
+
+  h5 {
+    font-weight: 500;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    opacity: 0.5;
+    margin-bottom: $unit / 2;
+  }
+
+  .textField {
+    width: 100%;
+    padding: $unit;
+  }
+
+  .button {
+    display: block;
+    margin: 0 auto;
+    padding: $unit * 2;
+    margin-top: $unit * 2;
+    font-weight: 600;
+  }
+}
+
+
+@media (min-width: 640px) {
+  .auth {
+    .card-panel {
+      margin-top: initial;
+    }
+
+    .button {
+      margin-right: initial;
+    }
+  }
+}
+
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: $primary;
 }

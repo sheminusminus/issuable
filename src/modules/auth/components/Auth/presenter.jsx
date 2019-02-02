@@ -4,6 +4,8 @@ import _ from 'lodash';
 import {
   Button,
   TextField,
+  CardPanel,
+  VerticalCenter,
 } from 'modules/core/components';
 
 class Auth extends Component {
@@ -51,18 +53,22 @@ class Auth extends Component {
     const { token } = this.state;
 
     return (
-      <div className="auth">
-        <div className="inputGroup">
+      <div className="auth grid center-kids align-kids-md">
+        <CardPanel className="column bigger shadow">
+          <h5>Personal Access Token</h5>
+
           <TextField
+            className="column"
             value={token}
             name="token"
             onChange={this.handleFieldChange} />
 
           <Button
+            className="column primary-bg secondary-text no-bounds def-radius"
             onClick={this.handleDone}>
             Okay Go
           </Button>
-        </div>
+        </CardPanel>
       </div>
     );
   }

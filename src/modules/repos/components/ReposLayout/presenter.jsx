@@ -1,13 +1,15 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
+import { CardPanel } from 'modules/core/components';
+
 import { Issues, RepoSelect } from './components';
 
 const ReposLayout = () => (
-  <div className="repos">
+  <CardPanel className="repos">
     <Route path="/repos" component={RepoSelect} />
     <Route path="/repos/:id" component={Issues} />
-  </div>
+  </CardPanel>
 );
 
 export default ReposLayout;
