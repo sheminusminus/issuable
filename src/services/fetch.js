@@ -12,5 +12,5 @@ export function setAuth(token) {
 
 // axios.get wrapper
 export async function get(url, config) {
-  return axios.get(url, config);
+  return instance.get(url, config);
 }
