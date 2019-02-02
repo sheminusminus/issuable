@@ -44,7 +44,6 @@ class Auth extends Component {
 
   handleDone = () => {
     const { history } = this.props;
-
     history.push('/repos');
   };
 
@@ -53,15 +52,17 @@ class Auth extends Component {
 
     return (
       <div className="auth">
-        <TextField
-          value={token}
-          name="token"
-          onChange={this.handleFieldChange} />
+        <div className="inputGroup">
+          <TextField
+            value={token}
+            name="token"
+            onChange={this.handleFieldChange} />
 
-        <Button
-          onClick={this.handleDone}>
-          Okay Go
-        </Button>
+          <Button
+            onClick={this.handleDone}>
+            Okay Go
+          </Button>
+        </div>
       </div>
     );
   }

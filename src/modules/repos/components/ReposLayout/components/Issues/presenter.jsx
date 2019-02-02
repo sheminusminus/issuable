@@ -64,7 +64,7 @@ class Issues extends Component {
     const options = this.issueOptions();
 
     return (
-      <div className="issues">
+      <div className="issues panel">
         <Select
           onChange={this.handleSortChange}
           value={sortBy}

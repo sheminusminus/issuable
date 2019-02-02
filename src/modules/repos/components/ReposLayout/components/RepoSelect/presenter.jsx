@@ -35,7 +35,7 @@ class RepoSelect extends Component {
     const options = this.repoOptions();
 
     return (
-      <div className="repoSelect">
+      <div className="repoSelect panel">
         <SelectList
           name="repos"
           value={selectedRepoId}

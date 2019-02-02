@@ -1,5 +1,42 @@
-@import 'partials/colors';
-@import 'partials/base';
+$lightBg: #f8f9fe;
+$default: #172b4d;
+$primary: #5e72e4;
+$secondary: #f7fafc;
+$info: #11cdef;
+$success: #2dce89;
+$warning: #ff9f89;
+$danger: #f5365c;
+$primaryText: #32325d;
 
-@import 'components/all';
+$unit: 8px;
+$padding-sm: 24px;
+$padding-lg: 32px;
 
+$inputHeight: 40px;
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $lightBg;
+  color: $primaryText;
+  padding: $padding-lg;
+  min-height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  monospace;
+}
