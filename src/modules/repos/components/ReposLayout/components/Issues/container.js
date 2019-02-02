@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectors, actions } from '../..';
+import { selectors, actions } from '../../../../index';
 
 import presenter from './presenter';
 

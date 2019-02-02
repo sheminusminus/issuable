@@ -10,7 +10,7 @@ class Issues extends Component {
 
   render() {
     return (
-      <div className="issues" />
+      <div className="issues">Issues</div>
     );
   }
 }

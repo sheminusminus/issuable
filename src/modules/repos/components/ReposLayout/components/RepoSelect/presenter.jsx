@@ -13,7 +13,11 @@ class RepoSelect extends Component {
   }
 
   handleRepoSelected = (value) => {
-    this.setState({ selectedRepoId: value });
+    const { history } = this.props;
+
+    this.setState({ selectedRepoId: value }, () => {
+      history.push(`/repos/${value}`);
+    });
   };
 
   repoOptions = () => {

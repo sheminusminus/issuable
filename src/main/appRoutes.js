@@ -1,11 +1,11 @@
 import { Auth } from 'modules/auth/components';
-import { RepoSelect } from 'modules/repos/components';
+import { ReposLayout } from 'modules/repos/components';
 
 export default [
   {
     path: '/repos',
     key: 'repo-route',
-    component: RepoSelect,
+    component: ReposLayout,
   },
   {
     path: '/',
