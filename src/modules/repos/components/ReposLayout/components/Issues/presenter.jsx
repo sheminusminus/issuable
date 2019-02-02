@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
-import { SelectList } from 'modules/core/components';
+import { Select, SelectList } from 'modules/core/components';
+
+const sortOptions = [
+  { value: 'createdAt:desc', label: 'Newest' },
+  { value: 'createdAt:asc', label: 'Oldest' },
+  { value: 'updatedAt:desc', label: 'Recently Updated' },
+  { value: 'updatedAt:asc', label: 'Least Recently Updated' },
+  { value: 'assignee:desc', label: 'Assignee (A-Z)' },
+  { value: 'assignee:asc', label: 'Assignee (Z-A)' },
+];
 
 class Issues extends Component {
+  state = {
+    sortBy: sortOptions[0].value,
+  };
+
   componentDidMount() {
     const { idParam } = this.props;
     if (idParam) this.loadIssuesForRepo(idParam);
@@ -23,24 +37,39 @@ class Issues extends Component {
   };
 
   issueOptions = () => {
+    const { sortBy } = this.state;
     const { idParam, issues } = this.props;
+
+    const [sortProperty, sortOrder] = sortBy.split(':');
 
     if (issues && idParam) {
       const repoIssues = issues[idParam] || [];
-      return Object.keys(repoIssues).map((id) => ({
-        value: id,
-        label: repoIssues[id].title,
+      const sortedIssues = _.orderBy(repoIssues, [sortProperty], [sortOrder]);
+      return sortedIssues.map((item) => ({
+        value: item.id,
+        label: item.title,
       }));
     }
 
     return [];
   };
 
+  handleSortChange = (sortBy) => {
+    this.setState({ sortBy });
+  };
+
   render() {
+    const { sortBy } = this.state;
+
     const options = this.issueOptions();
 
     return (
       <div className="issues">
+        <Select
+          onChange={this.handleSortChange}
+          value={sortBy}
+          options={sortOptions} />
+
         <SelectList
           name="issues"
           value={null}

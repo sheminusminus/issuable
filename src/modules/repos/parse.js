@@ -6,7 +6,9 @@ export const formatRepos = data => data.reduce((obj, item) => ({
 export const formatIssues = data => data.reduce((obj, item) => ({
   ...obj,
   [item.id]: {
+    id: item.id,
     assigneeAvatar: item.assignee ? item.assignee.avatar_url : '',
+    assignee: item.assignee ? item.assignee.login : '',
     title: item.title,
     createdAt: item.created_at,
     updatedAt: item.updated_at,
