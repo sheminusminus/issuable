@@ -372,6 +372,8 @@ h5 {
     max-width: 70%;
     display: inline-block;
   }
+
+  .panel {}
 }
 
 .repoSelect {
@@ -413,7 +415,27 @@ h5 {
 
 @media (min-width: 768px) {
   .repos {
-    display: block;
+    flex-direction: row;
+
+    .panel {
+      width: calc(50% - 8px);
+
+      &:first-child {
+        margin-right: $unit*2;
+      }
+    }
+  }
+
+  .repoSelect {
+    order: 1;
+  }
+
+  .issues {
+    order: 2;
+
+    .flexBetween {
+      margin-bottom: 4px;
+    }
   }
 }
 
