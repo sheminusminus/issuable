@@ -2,7 +2,7 @@
 
 manage your github issues with ease!
 
-[try the demo](https://routable-euojmyvlju.now.sh)
+[try the demo](https://routable-debcsjddkk.now.sh/repos/84578851)
 
 ## how to use
 
@@ -13,6 +13,8 @@ manage your github issues with ease!
 3. sort issues as you like!
 
 ### custom sorting option: experimental feature
+
+*note: there is currently no way to set custom sorting on touch screens.*
 
 when selected on the 'custom' sort option:
 
