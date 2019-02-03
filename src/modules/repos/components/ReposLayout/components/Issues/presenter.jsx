@@ -106,6 +106,8 @@ class Issues extends Component {
     this.setState({ selectedIssue });
   };
 
+  // this whole method is also part of the custom
+  // ordering experiment and could also use some refactoring
   handleIssueKeyDown = (key, id) => {
     const {
       issuesOrder,
@@ -120,10 +122,13 @@ class Issues extends Component {
       const currentIndex = issueIds.indexOf(id);
 
       if (currentIndex > -1) {
+        // maintain index if at beginning or end already
         let nextIndex = currentIndex;
         if (key === keys.UP) {
+          // move forward one place, or keep at zero
           nextIndex = Math.max(0, currentIndex - 1);
         } else if (key === keys.DOWN) {
+          // move backward one place, or keep at end
           nextIndex = Math.min(issueIds.length - 1, currentIndex + 1);
         }
 

@@ -425,6 +425,8 @@ h5 {
 }
 
 @media (min-width: 768px) {
+  .hide-lg { display: none; }
+
   .repos {
     flex-direction: row;
 

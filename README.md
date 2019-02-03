@@ -38,8 +38,15 @@ yarn start
 
 ### build and run for production
 
-`yarn build`
+```
+npm i -g simplehttpserver
+cd issuable
+yarn build
+cd build
+simplehttpserver
+```
 
+then visit [localhost:8000](http://localhost:8000) in your browser.
 
 ## additional info
 
