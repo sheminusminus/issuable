@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Routing, sortOptions } from 'config';
-import { randomColor } from 'utils';
+import { randomColor, arrayMove } from 'utils';
 
 import {
   Select,
@@ -11,6 +11,11 @@ import {
   IssueListItem,
   EmptyState,
 } from 'modules/core/components';
+
+const keys = {
+  UP: 'ArrowUp',
+  DOWN: 'ArrowDown',
+};
 
 const IssuesPanelHeader = ({ repoName, onButtonClick }) => (
   <div className="flexBetween">
@@ -78,6 +83,22 @@ class Issues extends Component {
     this.setState({ selectedIssue });
   };
 
+  handleIssueKeyDown = (key, id) => {
+    const { issuesOrder, setIssuesOrder, idParam } = this.props;
+    const issueIds = issuesOrder[idParam] || [];
+    const currentIndex = issueIds.indexOf(id);
+
+    let nextIndex = currentIndex;
+    if (key === keys.UP) {
+      nextIndex = Math.max(0, currentIndex - 1);
+    } else if (key === keys.DOWN) {
+      nextIndex = Math.min(issueIds.length - 1, currentIndex + 1);
+    }
+
+    const reordered = arrayMove(issueIds, currentIndex, nextIndex);
+    setIssuesOrder(idParam, reordered);
+  };
+
   render() {
     const { sortStringValue, repoName, fetchingIssues } = this.props;
     const { selectedIssue } = this.state;
@@ -102,6 +123,7 @@ class Issues extends Component {
               </div>
 
               <SelectList
+                onItemKeyDown={this.handleIssueKeyDown}
                 onSelection={this.handleIssueSelected}
                 OptionComponent={IssueListItem}
                 name="issues"

@@ -20,7 +20,6 @@ class IssueListItem extends React.Component {
     const { onKeyDown, value } = this.props;
     const { key } = evt;
     evt.preventDefault();
-    console.log(key);
     onKeyDown(key, value);
   };
 

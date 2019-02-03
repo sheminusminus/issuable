@@ -56,11 +56,13 @@ const mapStateToProps = createStructuredSelector({
   idParam: getIdParam,
   sortStringValue: uiSelectors.getSortStringValue,
   repoName: getSelectedRepoName,
+  issuesOrder: uiSelectors.getIssuesOrder,
 });
 
 const mapDispatchToProps = {
   requestIssues: actions.requestIssues,
   setIssuesSort: uiActions.setIssuesSort,
+  setIssuesOrder: uiActions.setIssuesOrder,
 };
 
 export default connect(

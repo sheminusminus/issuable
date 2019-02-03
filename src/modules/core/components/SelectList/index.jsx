@@ -38,7 +38,13 @@ class SelectList extends Component {
   };
 
   renderItem = (opt, idx) => {
-    const { OptionComponent, name, optionClassName, value, onItemKeyDown } = this.props;
+    const {
+      OptionComponent,
+      name,
+      optionClassName,
+      value,
+      onItemKeyDown,
+    } = this.props;
 
     if (OptionComponent) {
       return (
