@@ -1,4 +1,5 @@
 # issuable
+[![Build Status](https://travis-ci.com/sheminusminus/issuable.svg?branch=master)](https://travis-ci.com/sheminusminus/issuable)
 
 manage your github issues with ease!
 
