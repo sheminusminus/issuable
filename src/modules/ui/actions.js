@@ -9,3 +9,13 @@ export function setIssuesSort(property, direction) {
     },
   };
 }
+
+export function setIssuesOrder(repoId, issueIds) {
+  return {
+    type: constants.SET_ISSUE_ORDER,
+    payload: {
+      repoId,
+      issueIds,
+    },
+  };
+}

@@ -51,10 +51,10 @@ class Select extends Component {
               className={optionClassName}
               value="" />}
 
-          {options.map((opt, idx) => (
+          {options.map(opt => (
             <Option
               value={opt.value}
-              key={`${name}-option-${idx}`}
+              key={opt.value}
               label={opt.label}
               className={optionClassName} />
           ))}

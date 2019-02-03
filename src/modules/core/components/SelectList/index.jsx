@@ -29,6 +29,7 @@ class SelectList extends Component {
     onSelection: () => null,
     value: {},
     options: [],
+    onItemKeyDown: () => null,
   };
 
   handleSelection = (value) => {
@@ -37,15 +38,22 @@ class SelectList extends Component {
   };
 
   renderItem = (opt, idx) => {
-    const { OptionComponent, name, optionClassName, value } = this.props;
+    const {
+      OptionComponent,
+      optionClassName,
+      value,
+      onItemKeyDown,
+    } = this.props;
 
     if (OptionComponent) {
       return (
         <OptionComponent
-          key={`${name}-item-${idx}`}
+          onKeyDown={onItemKeyDown}
+          key={opt.value}
           selectedValue={value}
           option={opt}
           index={idx}
+          value={opt.value}
           onSelect={this.handleSelection} />
       );
     }
@@ -54,7 +62,7 @@ class SelectList extends Component {
       <SelectListItem
         onSelect={this.handleSelection}
         value={opt.value}
-        key={`${name}-item-${idx}`}
+        key={opt.value}
         label={opt.label}
         className={classie([optionClassName], {
           selected: value === opt.value,

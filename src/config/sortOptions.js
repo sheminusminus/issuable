@@ -5,4 +5,5 @@ export default [
   { value: 'updatedAt:asc', label: 'Least Recently Updated' },
   { value: 'assignee:desc', label: 'Assignee (A-Z)' },
   { value: 'assignee:asc', label: 'Assignee (Z-A)' },
+  { value: 'custom:desc', label: 'Custom (Experimental)' },
 ];
