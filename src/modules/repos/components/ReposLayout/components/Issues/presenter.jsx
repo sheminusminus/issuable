@@ -35,17 +35,17 @@ class Issues extends Component {
   };
 
   componentDidMount() {
-    const { idParam } = this.props;
-    if (idParam) this.loadIssuesForRepo(idParam);
+    const { repoId } = this.props;
+    if (repoId) this.loadIssuesForRepo(repoId);
   }
 
   componentDidUpdate(prevProps) {
-    const { idParam: lastIdParam } = prevProps;
-    const { idParam } = this.props;
+    const { repoId: lastrepoId } = prevProps;
+    const { repoId } = this.props;
 
-    if (idParam && lastIdParam !== idParam) {
+    if (repoId && lastrepoId !== repoId) {
       // reload the issues if we've switched selected repos
-      this.loadIssuesForRepo(idParam);
+      this.loadIssuesForRepo(repoId);
     }
   }
 
@@ -65,21 +65,24 @@ class Issues extends Component {
     const {
       issues,
       issuesOrder,
-      idParam,
+      repoId,
+      sortStringValue,
     } = this.props;
 
-    const ordered = issuesOrder[idParam];
-    if (Array.isArray(ordered)) {
-      const data = issues.reduce((obj, item) => ({
-        ...obj,
-        [item.id]: item,
-      }), {});
+    if (sortStringValue.includes('custom')) {
+      const ordered = issuesOrder[repoId];
+      if (Array.isArray(ordered)) {
+        const data = issues.reduce((obj, item) => ({
+          ...obj,
+          [item.id]: item,
+        }), {});
 
-      return ordered.map(id => ({
-        value: id,
-        label: data[id].title,
-        data: data[id],
-      }));
+        return ordered.map(id => ({
+          value: id,
+          label: data[id].title,
+          data: data[id],
+        }));
+      }
     }
 
     return issues.map((item) => ({
@@ -92,7 +95,7 @@ class Issues extends Component {
   handleSortChange = (sortBy) => {
     const { setIssuesSort } = this.props;
     const [property, dir] = sortBy.split(':');
-    setIssuesSort(property, dir);
+    setIssuesSort(property, dir || '');
   };
 
   handleIssueSelected = (selectedIssue) => {
@@ -104,21 +107,25 @@ class Issues extends Component {
       issuesOrder,
       issues,
       setIssuesOrder,
-      idParam,
+      repoId,
+      sortStringValue,
     } = this.props;
-    const issueIds = issuesOrder[idParam] || issues.map(iss => iss.id) || [];
-    const currentIndex = issueIds.indexOf(id);
 
-    if (currentIndex > -1) {
-      let nextIndex = currentIndex;
-      if (key === keys.UP) {
-        nextIndex = Math.max(0, currentIndex - 1);
-      } else if (key === keys.DOWN) {
-        nextIndex = Math.min(issueIds.length - 1, currentIndex + 1);
+    if (sortStringValue.includes('custom')) {
+      const issueIds = issuesOrder[repoId] || issues.map(iss => iss.id) || [];
+      const currentIndex = issueIds.indexOf(id);
+
+      if (currentIndex > -1) {
+        let nextIndex = currentIndex;
+        if (key === keys.UP) {
+          nextIndex = Math.max(0, currentIndex - 1);
+        } else if (key === keys.DOWN) {
+          nextIndex = Math.min(issueIds.length - 1, currentIndex + 1);
+        }
+
+        const reordered = arrayMove(issueIds, currentIndex, nextIndex);
+        setIssuesOrder(repoId, reordered);
       }
-
-      const reordered = arrayMove(issueIds, currentIndex, nextIndex);
-      setIssuesOrder(idParam, reordered);
     }
   };
 

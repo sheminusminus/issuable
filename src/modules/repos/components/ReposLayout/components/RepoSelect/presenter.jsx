@@ -23,7 +23,7 @@ class RepoSelect extends Component {
   };
 
   repoOptions = () => {
-    const { repos = [] } = this.props;
+    const { repos = {} } = this.props;
 
     return Object.keys(repos).map((id) => ({
       value: id,

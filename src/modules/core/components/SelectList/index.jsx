@@ -62,7 +62,7 @@ class SelectList extends Component {
       <SelectListItem
         onSelect={this.handleSelection}
         value={opt.value}
-        key={value}
+        key={opt.value}
         label={opt.label}
         className={classie([optionClassName], {
           selected: value === opt.value,

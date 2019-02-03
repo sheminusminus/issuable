@@ -53,7 +53,7 @@ const getSelectedRepoName = createSelector(
 const mapStateToProps = createStructuredSelector({
   issues: getSortedIssues,
   fetchingIssues: selectors.getFetchingIssues,
-  idParam: getIdParam,
+  repoId: getIdParam,
   sortStringValue: uiSelectors.getSortStringValue,
   repoName: getSelectedRepoName,
   issuesOrder: uiSelectors.getIssuesOrder,
