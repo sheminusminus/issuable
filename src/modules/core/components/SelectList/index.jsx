@@ -50,7 +50,7 @@ class SelectList extends Component {
       return (
         <OptionComponent
           onKeyDown={onItemKeyDown}
-          key={`${name}-item-${idx}`}
+          key={opt.value}
           selectedValue={value}
           option={opt}
           index={idx}
@@ -63,7 +63,7 @@ class SelectList extends Component {
       <SelectListItem
         onSelect={this.handleSelection}
         value={opt.value}
-        key={`${name}-item-${idx}`}
+        key={value}
         label={opt.label}
         className={classie([optionClassName], {
           selected: value === opt.value,

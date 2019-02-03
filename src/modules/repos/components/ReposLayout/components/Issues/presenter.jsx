@@ -64,7 +64,23 @@ class Issues extends Component {
   issueOptions = () => {
     const {
       issues,
+      issuesOrder,
+      idParam,
     } = this.props;
+
+    const ordered = issuesOrder[idParam];
+    if (Array.isArray(ordered)) {
+      const data = issues.reduce((obj, item) => ({
+        ...obj,
+        [item.id]: item,
+      }), {});
+
+      return ordered.map(id => ({
+        value: id,
+        label: data[id].title,
+        data: data[id],
+      }));
+    }
 
     return issues.map((item) => ({
       value: item.id,
@@ -84,19 +100,26 @@ class Issues extends Component {
   };
 
   handleIssueKeyDown = (key, id) => {
-    const { issuesOrder, setIssuesOrder, idParam } = this.props;
-    const issueIds = issuesOrder[idParam] || [];
+    const {
+      issuesOrder,
+      issues,
+      setIssuesOrder,
+      idParam,
+    } = this.props;
+    const issueIds = issuesOrder[idParam] || issues.map(iss => iss.id) || [];
     const currentIndex = issueIds.indexOf(id);
 
-    let nextIndex = currentIndex;
-    if (key === keys.UP) {
-      nextIndex = Math.max(0, currentIndex - 1);
-    } else if (key === keys.DOWN) {
-      nextIndex = Math.min(issueIds.length - 1, currentIndex + 1);
-    }
+    if (currentIndex > -1) {
+      let nextIndex = currentIndex;
+      if (key === keys.UP) {
+        nextIndex = Math.max(0, currentIndex - 1);
+      } else if (key === keys.DOWN) {
+        nextIndex = Math.min(issueIds.length - 1, currentIndex + 1);
+      }
 
-    const reordered = arrayMove(issueIds, currentIndex, nextIndex);
-    setIssuesOrder(idParam, reordered);
+      const reordered = arrayMove(issueIds, currentIndex, nextIndex);
+      setIssuesOrder(idParam, reordered);
+    }
   };
 
   render() {
