@@ -40,7 +40,6 @@ class SelectList extends Component {
   renderItem = (opt, idx) => {
     const {
       OptionComponent,
-      name,
       optionClassName,
       value,
       onItemKeyDown,
