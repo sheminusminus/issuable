@@ -425,8 +425,6 @@ h5 {
 }
 
 @media (min-width: 768px) {
-  .hide-lg { display: none; }
-
   .repos {
     flex-direction: row;
 
@@ -448,6 +446,11 @@ h5 {
 
     .flexBetween {
       margin-bottom: 4px;
+    }
+
+    .button {
+
+      &.hide-lg { display: none; }
     }
   }
 }

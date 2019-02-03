@@ -2,7 +2,7 @@
 
 manage your github issues with ease!
 
-[try the demo](https://routable-debcsjddkk.now.sh/repos/84578851)
+[try the demo](https://issuable.now.sh)
 
 ## how to use
 
