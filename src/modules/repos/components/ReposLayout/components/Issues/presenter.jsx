@@ -70,7 +70,11 @@ class Issues extends Component {
     } = this.props;
 
     if (sortStringValue.includes('custom')) {
+      // this code block, and the data informing it, DEFINITELY
+      // in need of some tlc and refactoring...
+      // still largely in experimental phase
       const ordered = issuesOrder[repoId];
+
       if (Array.isArray(ordered)) {
         const data = issues.reduce((obj, item) => ({
           ...obj,
