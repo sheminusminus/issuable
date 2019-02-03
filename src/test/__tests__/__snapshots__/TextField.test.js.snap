@@ -4,6 +4,7 @@ exports[`<TextField /> Applies its \`name\` prop 1`] = `
 <input
   className="textField"
   name="fullName"
+  onKeyDown={[Function]}
   type="text"
   value=""
 />
@@ -12,6 +13,7 @@ exports[`<TextField /> Applies its \`name\` prop 1`] = `
 exports[`<TextField /> Applies its \`value\` prop 1`] = `
 <input
   className="textField"
+  onKeyDown={[Function]}
   type="text"
   value="Teri Dactyl"
 />
@@ -20,6 +22,7 @@ exports[`<TextField /> Applies its \`value\` prop 1`] = `
 exports[`<TextField /> Renders with empty string default value 1`] = `
 <input
   className="textField"
+  onKeyDown={[Function]}
   type="text"
   value=""
 />

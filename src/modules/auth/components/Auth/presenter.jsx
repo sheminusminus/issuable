@@ -45,6 +45,11 @@ class Auth extends Component {
     });
   };
 
+  handleKeyDown = (evt) => {
+    const { key } = evt;
+    if (key === 'Enter') this.handleDone();
+  };
+
   handleDone = () => {
     const { history } = this.props;
     history.push(Routing.clientRepos());
@@ -62,6 +67,7 @@ class Auth extends Component {
             className="column"
             value={token}
             name="token"
+            onKeyDown={this.handleKeyDown}
             onChange={this.handleFieldChange} />
 
           <Button

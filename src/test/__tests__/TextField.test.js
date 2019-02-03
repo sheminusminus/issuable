@@ -51,4 +51,20 @@ describe('<TextField />', () => {
 
     expect(onFieldChange.mock.calls.length).toBe(1);
   });
+
+  it('simulates keydown events', () => {
+    const onKeyDown = jest.fn();
+    const event = { target: { key: 'Enter' } };
+
+    const item = shallow(
+      <TextField
+        name="fullName"
+        value={''}
+        onKeyDown={onKeyDown} />,
+    );
+
+    item.find('input').simulate('keydown', event);
+
+    expect(onKeyDown.mock.calls.length).toBe(1);
+  });
 });
