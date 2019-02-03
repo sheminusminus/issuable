@@ -23,3 +23,8 @@ export const getSortStringValue = createSelector(
   [getIssuesSortProperty, getIssuesSortDir],
   (prop, dir) => `${prop}:${dir}`,
 );
+
+export const getIssuesOrder = createSelector(
+  [getState],
+  ui => ui.issuesOrder,
+);

@@ -7,6 +7,7 @@ export const initialState = {
     property: 'createdAt',
     direction: 'desc',
   },
+  issuesOrder: {},
 };
 
 export function reducer(state = initialState, action = {}) {
@@ -17,6 +18,15 @@ export function reducer(state = initialState, action = {}) {
         issuesSort: {
           property: action.payload.property,
           direction: action.payload.direction,
+        },
+      };
+
+    case constants.SET_ISSUE_ORDER:
+      return {
+        ...state,
+        issuesOrder: {
+          ...state.issuesOrder,
+          [action.payload.repoId]: action.payload.issueIds,
         },
       };
 
