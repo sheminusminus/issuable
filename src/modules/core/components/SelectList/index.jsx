@@ -29,6 +29,7 @@ class SelectList extends Component {
     onSelection: () => null,
     value: {},
     options: [],
+    onItemKeyDown: () => null,
   };
 
   handleSelection = (value) => {
@@ -37,15 +38,17 @@ class SelectList extends Component {
   };
 
   renderItem = (opt, idx) => {
-    const { OptionComponent, name, optionClassName, value } = this.props;
+    const { OptionComponent, name, optionClassName, value, onItemKeyDown } = this.props;
 
     if (OptionComponent) {
       return (
         <OptionComponent
+          onKeyDown={onItemKeyDown}
           key={`${name}-item-${idx}`}
           selectedValue={value}
           option={opt}
           index={idx}
+          value={opt.value}
           onSelect={this.handleSelection} />
       );
     }

@@ -25,24 +25,13 @@ const IssuesPanelHeader = ({ repoName, onButtonClick }) => (
 );
 
 class Issues extends Component {
+  state = {
+    selectedIssue: null,
+  };
+
   componentDidMount() {
     const { idParam } = this.props;
     if (idParam) this.loadIssuesForRepo(idParam);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const {
-      idParam: nextId,
-      sortStringValue: nextSort,
-      fetchingIssues: nextFetching,
-    } = nextProps;
-
-    const { idParam, sortStringValue, fetchingIssues } = this.props;
-
-    return (nextId !== idParam ||
-      nextSort !== sortStringValue ||
-      nextFetching !== fetchingIssues
-    );
   }
 
   componentDidUpdate(prevProps) {
@@ -85,8 +74,13 @@ class Issues extends Component {
     setIssuesSort(property, dir);
   };
 
+  handleIssueSelected = (selectedIssue) => {
+    this.setState({ selectedIssue });
+  };
+
   render() {
     const { sortStringValue, repoName, fetchingIssues } = this.props;
+    const { selectedIssue } = this.state;
 
     const options = this.issueOptions();
 
@@ -108,9 +102,10 @@ class Issues extends Component {
               </div>
 
               <SelectList
+                onSelection={this.handleIssueSelected}
                 OptionComponent={IssueListItem}
                 name="issues"
-                value={null}
+                value={selectedIssue}
                 options={options} />
             </>}
 

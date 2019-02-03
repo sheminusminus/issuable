@@ -234,13 +234,8 @@ h1, h2, h3, h4, h5, h6 {
       color: $primary;
     }
 
-    &:first-child {
-      padding-top: 0;
-    }
-
     &:last-child {
       border-bottom: 0;
-      padding-bottom: 0;
     }
 
     &.selected {
@@ -250,6 +245,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .issueListItem {
     display: flex;
+    outline: none;
 
     .imgWrap {
       width: $avatarSize;
@@ -272,6 +268,10 @@ h1, h2, h3, h4, h5, h6 {
     .times {
       font-size: 12px;
       opacity: 0.6;
+    }
+
+    &.selected {
+      background-color: $lightBg;
     }
   }
 }
