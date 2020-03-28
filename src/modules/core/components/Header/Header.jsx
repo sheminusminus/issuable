@@ -16,7 +16,9 @@ const Header = ({ color, className, onLogout }) => (
       </h4>
     </Link>
 
-    <Button onClick={onLogout}>Logout</Button>
+    <Button className="logout-btn" onClick={onLogout}>
+      Logout
+    </Button>
   </header>
 );
 

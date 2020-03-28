@@ -323,9 +323,9 @@ h1, h2, h3, h4, h5, h6 {
 
   .page-title {
     color: $secondary;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 60px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     @include smallCaps();
   }
 
@@ -333,11 +333,12 @@ h1, h2, h3, h4, h5, h6 {
     max-height: 40px;
     background-color: transparent;
     border-color: transparent;
-    color: $default;
-    font-weight: 500;
+    color: $secondary;
+    font-weight: 600;
     padding: 0 0 0 ;
     margin: 0 0 0 ;
     align-self: center;
+    @include smallCaps();
   }
 }
 
