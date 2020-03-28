@@ -277,12 +277,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .button {
-  background-color: $secondary;
+  background-color: $primary;
   border: 1px solid $primary;
-  color: $primary;
+  font-weight: 500;
+  color: $secondary;
   border-radius: $borderRad;
   margin: $unit;
   font-size: 14px;
+  padding: 0 20px;
+  height: 32px;
+  line-height: 32px;
+
+  span {
+    user-select: none;
+  }
 }
 
 .emptyState {
