@@ -30,7 +30,6 @@ jobs:
 
       - name: chromatic
         uses: chromaui/action@v1
-        run: yarn chromatic
         with:
           appCode: ${{ secrets.CHROMATIC }}
           token: ${{ secrets.GITHUB_TOKEN }}
