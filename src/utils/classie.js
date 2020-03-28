@@ -7,7 +7,7 @@
  * whether to apply as value.
  * @returns {string} Concatenated class names result.
  */
-export default function classie(classArray, toggleClasses) {
+export default function classie(classArray, toggleClasses = undefined) {
   const classes = [];
 
   if (classArray && Array.isArray(classArray)) {
