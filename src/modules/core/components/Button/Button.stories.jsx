@@ -4,7 +4,11 @@ import Button from './Button';
 
 export default { title: 'Button' };
 
-export const withText = () => <Button>Hello Button</Button>;
+export const withText = () => (
+  <Button className="grid vert-center">
+    <span>Hello Button</span>
+  </Button>
+);
 
 export const withEmoji = () => (
   <Button>
