@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import configureStore from './store';
 
 import './styles/main.scss';
-
 import Main from './main';
 
 const { store, persistor } = configureStore();
