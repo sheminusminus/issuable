@@ -2,7 +2,11 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
+  hold:
+    type: approval
   build-and-test:
+    requires:
+      - hold
     executor:
       name: node/default
     steps:
@@ -14,8 +18,5 @@ jobs:
 workflows:
     build-and-test:
       jobs:
-        - hold:
-            type: approval
+        - hold
         - build-and-test
-            requires:
-                - hold
