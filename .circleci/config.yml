@@ -14,4 +14,8 @@ jobs:
 workflows:
     build-and-test:
       jobs:
+        - hold:
+            type: approval
         - build-and-test
+            requires:
+                - hold
