@@ -48,10 +48,3 @@ simplehttpserver
 ```
 
 then visit [localhost:8000](http://localhost:8000) in your browser.
-
-## additional info
-
-this was bootstrapped with create-react-app (first time i've ever used CRA).
-to access additional build info or edit build scripts/configs, run:
-
-`yarn eject`
